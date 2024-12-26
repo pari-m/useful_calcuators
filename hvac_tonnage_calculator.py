@@ -70,6 +70,10 @@ def calculate_cooling_load(
     # Convert to BTU/hr (1 kW = 3412.142 BTU/hr)
     cooling_load_btu = cooling_load_kw * 3412.142
 
+    water_removal_kg_s = mass_flow * (w1 - w2)  # kg water/s
+    water_removal_kg_hr = water_removal_kg_s * 3600  # Convert to kg/hr
+    logger.debug(f"Water removal rate: {water_removal_kg_hr:.2f} kg/hr")
+
     return round(cooling_load_btu)
 
 
@@ -78,6 +82,7 @@ def get_user_input(logger: logging.Logger) -> Tuple[float, float, float, float, 
     logger.info("\nEnter room dimensions and air changes per hour:")
     length = float(input("Room length (feet) [20]: ") or 20)
     width = float(input("Room width (feet) [15]: ") or 15)
+    logger.info(f"\nRoom area = {length*width} sqft")
     height = float(input("Room height (feet) [8]: ") or 8)
     ach = float(input("Air changes per hour [4]: ") or 4)
 
