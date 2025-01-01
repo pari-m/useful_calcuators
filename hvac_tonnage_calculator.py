@@ -100,7 +100,7 @@ def get_user_input(logger: logging.Logger) -> Tuple[float, float, float, float, 
 
 def main():
     # Initialize logger
-    DEBUG_MODE = True  # Set to False to disable debugging
+    DEBUG_MODE = True  #Set to False to disable debugging
     logger = setup_logger(DEBUG_MODE)
 
     try:
